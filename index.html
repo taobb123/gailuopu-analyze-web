@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>优势解码 - 盖洛普优势与命理分析</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="w-full py-6 bg-white shadow">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">优势解码</h1>
+      <nav class="space-x-6">
+        <a href="#features" class="hover:text-indigo-600">核心理念</a>
+        <a href="#pricing" class="hover:text-indigo-600">定价</a>
+        <a href="#faq" class="hover:text-indigo-600">FAQ</a>
+        <a href="#contact" class="hover:text-indigo-600">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-indigo-100 to-indigo-200 py-20 text-center">
+    <h2 class="text-4xl font-bold mb-4">探索你的天赋优势</h2>
+    <p class="text-xl text-gray-700 mb-8">结合盖洛普优势识别、紫微斗数与现代职业模型，解码你的人生路径</p>
+    <a href="#analyze" class="bg-indigo-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-indigo-700">立即开始分析</a>
+  </section>
+
+  <!-- Input Section -->
+  <section id="analyze" class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-xl">
+      <h3 class="text-2xl font-semibold mb-6 text-center">输入你的信息</h3>
+      <div class="space-y-4">
+        <input id="name" type="text" placeholder="姓名" class="w-full border rounded p-3" />
+        <input id="birthday" type="date" class="w-full border rounded p-3" />
+        <select id="strengths" class="w-full border rounded p-3">
+          <option disabled selected>选择你的优势（例如：战略、学习热情等）</option>
+          <option value="战略">战略</option>
+          <option value="学习热情">学习热情</option>
+          <option value="指挥">指挥</option>
+          <option value="适应">适应</option>
+          <option value="沟通">沟通</option>
+        </select>
+        <button onclick="generateReport()" class="bg-indigo-600 text-white px-4 py-2 rounded w-full hover:bg-indigo-700">
+          生成我的专属报告
+        </button>
+      </div>
+      <div id="report" class="mt-10 p-6 bg-gray-100 rounded hidden">
+        <h4 class="text-xl font-bold mb-2">分析报告</h4>
+        <p id="report-content" class="text-gray-700"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-2xl font-semibold mb-8">我们的核心优势</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white rounded shadow">
+          <h4 class="font-bold text-lg mb-2">盖洛普优势组合</h4>
+          <p>基于全球数千万数据的优势识别模型，分析你的潜力与优势路径。</p>
+        </div>
+        <div class="p-6 bg-white rounded shadow">
+          <h4 class="font-bold text-lg mb-2">东方玄学结合</h4>
+          <p>融合紫微斗数、星座、五行等元素，构建你独一无二的命理图谱。</p>
+        </div>
+        <div class="p-6 bg-white rounded shadow">
+          <h4 class="font-bold text-lg mb-2">精准职业匹配</h4>
+          <p>从优势出发，结合性格与命格，为你匹配真正适合的职业方向。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-2xl font-semibold mb-8">用户评价</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-gray-100 rounded shadow">
+          <p>“我终于明白自己为什么在某些岗位不适应了，这个网站太神了！”</p>
+          <span class="block mt-4 font-bold">—— 李同学</span>
+        </div>
+        <div class="p-6 bg-gray-100 rounded shadow">
+          <p>“结合玄学的角度分析非常新颖，报告内容专业且易懂。”</p>
+          <span class="block mt-4 font-bold">—— 王女士</span>
+        </div>
+        <div class="p-6 bg-gray-100 rounded shadow">
+          <p>“找职业方向一直很迷茫，这次终于看清了自己优势所在。”</p>
+          <span class="block mt-4 font-bold">—— 小赵</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-2xl font-semibold mb-8">定价方案</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white rounded shadow">
+          <h4 class="text-xl font-bold mb-2">免费版</h4>
+          <p class="text-indigo-600 font-bold text-lg mb-4">¥0</p>
+          <p>包含基础分析与职业推荐</p>
+        </div>
+        <div class="p-6 bg-white rounded shadow border-2 border-indigo-600">
+          <h4 class="text-xl font-bold mb-2">标准版</h4>
+          <p class="text-indigo-600 font-bold text-lg mb-4">¥49</p>
+          <p>包含玄学分析、PDF报告与建议方案</p>
+        </div>
+        <div class="p-6 bg-white rounded shadow">
+          <h4 class="text-xl font-bold mb-2">专家版</h4>
+          <p class="text-indigo-600 font-bold text-lg mb-4">¥199</p>
+          <p>专业老师一对一深度解析</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h3 class="text-2xl font-semibold mb-8 text-center">常见问题解答</h3>
+      <div class="space-y-6">
+        <div>
+          <h4 class="font-bold">Q: 报告是科学的吗？</h4>
+          <p>A: 我们结合盖洛普优势、玄学理论与职业分析，结果专业可信。</p>
+        </div>
+        <div>
+          <h4 class="font-bold">Q: 为什么要填写生日？</h4>
+          <p>A: 生日是东方命理图谱建构的核心信息。</p>
+        </div>
+        <div>
+          <h4 class="font-bold">Q: 是否可以保存报告？</h4>
+          <p>A: 付费版本支持 PDF 导出，便于保存和回顾。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-8" id="contact">
+    <div class="container mx-auto px-4 text-center text-sm text-gray-600">
+      版权所有 © 2025 吕国祥 | 联系方式：guoxianglu9@gmail.com
+    </div>
+  </footer>
+
+  <!-- 模拟报告生成逻辑 -->
+  <script>
+    function generateReport() {
+      const name = document.getElementById('name').value;
+      const birthday = document.getElementById('birthday').value;
+      const strength = document.getElementById('strengths').value;
+
+      if (!name || !birthday || !strength) {
+        alert('请填写完整信息');
+        return;
+      }
+
+      const score = Math.floor(Math.random() * 20) + 80;
+      const level = score >= 90 ? "A（高度匹配）" : "B（较高匹配）";
+      const careers = ["产品经理", "心理咨询师", "职业教练", "内容策划"];
+      const avoid = ["行政助理", "重复性岗位"];
+      const selectedCareer = careers[Math.floor(Math.random() * careers.length)];
+      const selectedAvoid = avoid[Math.floor(Math.random() * avoid.length)];
+
+      const content = `
+        <strong>姓名：</strong> ${name}<br>
+        <strong>出生日期：</strong> ${birthday}<br>
+        <strong>优势：</strong> ${strength}<br>
+        <strong>匹配等级：</strong> ${level}<br>
+        <strong>职业匹配度：</strong> ${score} 分<br>
+        <strong>推荐职业：</strong> ${selectedCareer}<br>
+        <strong>不宜职业：</strong> ${selectedAvoid}<br>
+        <strong>分析建议：</strong> 你的优势在于思维敏捷与领导力，结合命盘中的阳性能量，建议往创新与沟通导向岗位发展。
+      `;
+
+      document.getElementById('report-content').innerHTML = content;
+      document.getElementById('report').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
