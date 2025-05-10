@@ -1,0 +1,68 @@
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const { Configuration, OpenAIApi } = require('openai');
+
+dotenv.config(); // 加载.env
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const openai = new OpenAIApi(new Configuration({
+  apiKey: process.env.OPENAI_API_KEY
+}));
+
+app.post('/api/report', async (req, res) => {
+  const { name, birthday, strength } = req.body;
+
+  if (!name || !birthday || !strength) {
+    return res.status(400).json({ error: '缺少必要字段' });
+  }
+
+  const prompt = `
+你是一位结合中西方玄学、紫微斗数、星座和现代盖洛普优势理论的职业分析专家。请根据以下用户信息生成一份专业、结构化的职业分析报告，包含以下字段：
+
+【用户信息】
+- 姓名：${name}
+- 生日：${birthday}
+- 盖洛普优势关键词：${strength}
+
+【要求返回结构化 JSON 格式，包含字段如下】：
+{
+  "name": "...",
+  "birthday": "...",
+  "strength": "...",
+  "level": "A / B / C",
+  "score": 匹配分数（0-100 的整数）,
+  "recommend": ["职业1", "职业2", "职业3"],
+  "avoid": ["不宜职业1", "不宜职业2"],
+  "suggestion": "详细建议，不少于300字"
+}
+
+请按要求直接输出 JSON 格式结果，无需解释说明。
+`;
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-4",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7
+    });
+
+    // 把 GPT 回复的 JSON 解析
+    const content = completion.data.choices[0].message.content.trim();
+    const result = JSON.parse(content); // 假设格式规范（如需更稳健可加 try/catch）
+
+    res.json(result);
+
+  } catch (err) {
+    console.error('GPT请求失败:', err.message);
+    res.status(500).json({ error: 'AI 分析失败，请稍后重试' });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✔️ 服务器已启动：http://localhost:${PORT}`);
+});
